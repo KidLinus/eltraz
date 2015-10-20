@@ -3,7 +3,25 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="1" name="datafiles"/>
+  <datafiles number="2" name="datafiles">
+    <datafile>
+      <name>maps.json</name>
+      <exists>-1</exists>
+      <size>451</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>maps.json</filename>
+    </datafile>
+  </datafiles>
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
@@ -558,6 +576,7 @@
     <script>scripts\statGetDef.gml</script>
     <script>scripts\statAdd.gml</script>
     <script>scripts\statSet.gml</script>
+    <script>scripts\json_read.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fntMain</font>
@@ -570,6 +589,7 @@
     <object>objects\Map</object>
     <object>objects\Gui</object>
     <object>objects\MapEnt</object>
+    <object>objects\Level</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>

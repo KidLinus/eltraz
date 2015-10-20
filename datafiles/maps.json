@@ -1,0 +1,26 @@
+{
+  "waterfront": {
+    "name": "Water Front",
+    "width": 800,
+    "height": 400,
+    "props": {
+      "platform01": {
+        "type": "solid",
+        "x": 2,
+        "y": 300
+        },
+      "portalLeft": {
+        "type": "portal",
+        "x": 750,
+        "y": 250,
+        "target": "portalRight"
+        },
+      "portalRight": {
+        "type": "portal",
+        "x": 50,
+        "y": 250,
+        "target": "portalLeft"
+      }
+    }
+  }
+}
