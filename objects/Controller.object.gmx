@@ -35,6 +35,9 @@ global.stats = ds_map_create()
 equUpdate()
 global.hp = statGetDef('hp', 1)
 global.mp = statGetDef('mp', 0)
+global.map = "waterfront"
+levelLoad(global.map)
+levelRender(global.map)
 
 var _it = ds_map_create()
 ds_map_add(_it, 'name', 'Simple Sword')
