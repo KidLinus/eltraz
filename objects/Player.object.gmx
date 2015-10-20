@@ -28,7 +28,7 @@
             <string>move_delta = current_time
 grav_delta = current_time
 step_delta = current_time
-map = Map
+map = LevelProp
 
 move_speed = 100
 grav_speed = 100
@@ -98,7 +98,7 @@ viewY = y - display_get_gui_height()/2
     }
     
     if x &lt; 8 x = 8
-    if x &gt; mapGetValueDef(Map.map, 'width', 1) - 8 x = mapGetValueDef(Map.map, 'width', 1) - 8
+    //if x &gt; mapGetValueDef(Map.map, 'width', 1) - 8 x = mapGetValueDef(Map.map, 'width', 1) - 8
     
     if !pCollision(x, y + 1, map) anim = 'jump'
     if skeleton_animation_get() != anim skeleton_animation_set(anim)
@@ -111,7 +111,7 @@ while(current_time - grav_delta &gt; 1000/grav_speed) {
     vdir = 1
     slide = 2
     if keyboard_check(vk_down) slide=1
-    if keyboard_check(vk_space) &amp;&amp; (pCollision(x, y + 1, map) || global.edit) vs = -0.06 * jump_speed
+    if keyboard_check(vk_space) &amp;&amp; (pCollision(x, y + 1, map) || global.debug) vs = -0.06 * jump_speed
     if vs &lt;0 vdir = -1
     repeat(max(floor(vs), floor(0-vs))) {
         if !pCollision(x, y + vdir, map){
@@ -131,7 +131,7 @@ while(current_time - grav_delta &gt; 1000/grav_speed) {
         }
     }
     if y &lt; 0 y = 0
-    if y &gt; mapGetValueDef(Map.map, 'height', 1) + 200 y = 0
+    //if y &gt; mapGetValueDef(Map.map, 'height', 1) + 200 y = 0
     
     event_user(1)
     grav_delta += 1000/grav_speed

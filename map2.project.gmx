@@ -526,62 +526,73 @@
       <sprite>sprites\sprStatBg</sprite>
     </sprites>
     <sprite>sprites\sprite418</sprite>
+    <sprite>sprites\maskNone</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\mapCreate.gml</script>
-    <script>scripts\mapGetValueDef.gml</script>
-    <script>scripts\mapGetEntityValueDef.gml</script>
-    <script>scripts\mapSetEntityValue.gml</script>
-    <script>scripts\mapRemoveEntityValue.gml</script>
-    <script>scripts\mapSetValue.gml</script>
-    <script>scripts\mapAddEntity.gml</script>
-    <script>scripts\mapDrawEntity.gml</script>
-    <script>scripts\mapPlaceEntity.gml</script>
-    <script>scripts\mapCreateSprite.gml</script>
-    <script>scripts\mapCreateObjects.gml</script>
-    <script>scripts\mapCreateCollisionmask.gml</script>
-    <script>scripts\guiDrawChat.gml</script>
-    <script>scripts\guiChatMessage.gml</script>
-    <script>scripts\mapSave.gml</script>
-    <script>scripts\mapLoad.gml</script>
-    <script>scripts\draw_self_outline.gml</script>
-    <script>scripts\draw_text_outline.gml</script>
-    <script>scripts\guiWindowCreate.gml</script>
-    <script>scripts\guiDrawWindows.gml</script>
-    <script>scripts\guiDrawWindow.gml</script>
-    <script>scripts\guiWindowGetDef.gml</script>
-    <script>scripts\guiWindowExists.gml</script>
-    <script>scripts\guiWindowSet.gml</script>
-    <script>scripts\guiWindowClose.gml</script>
-    <script>scripts\guiWinMainmenu.gml</script>
-    <script>scripts\guiWinEditentity.gml</script>
-    <script>scripts\guiWinInventory.gml</script>
-    <script>scripts\guiWinCharacter.gml</script>
-    <script>scripts\guiWinEditmenu.gml</script>
-    <script>scripts\guiDrawButton.gml</script>
-    <script>scripts\guiDrawItemslot.gml</script>
-    <script>scripts\guiDrawStat.gml</script>
+    <scripts name="GUI">
+      <script>scripts\guiChatMessage.gml</script>
+      <script>scripts\guiWindowCreate.gml</script>
+      <script>scripts\guiDrawWindows.gml</script>
+      <script>scripts\guiDrawWindow.gml</script>
+      <script>scripts\guiDrawChat.gml</script>
+      <script>scripts\guiWindowSet.gml</script>
+      <script>scripts\draw_self_outline.gml</script>
+      <script>scripts\guiWindowClose.gml</script>
+      <script>scripts\guiWindowGetDef.gml</script>
+      <script>scripts\guiWinMainmenu.gml</script>
+      <script>scripts\guiWinEditentity.gml</script>
+      <script>scripts\guiWinEditmenu.gml</script>
+      <script>scripts\guiDrawItemslot.gml</script>
+      <script>scripts\guiWinInventory.gml</script>
+      <script>scripts\guiWinCharacter.gml</script>
+      <script>scripts\guiDrawButton.gml</script>
+      <script>scripts\guiDrawStat.gml</script>
+      <script>scripts\guiWindowExists.gml</script>
+    </scripts>
+    <scripts name="Extend">
+      <script>scripts\json_read.gml</script>
+      <script>scripts\draw_text_outline.gml</script>
+      <script>scripts\mapGetDef.gml</script>
+    </scripts>
+    <scripts name="Level">
+      <script>scripts\levelLoad.gml</script>
+      <script>scripts\levelExists.gml</script>
+      <script>scripts\levelData.gml</script>
+      <script>scripts\levelRender.gml</script>
+      <script>scripts\levelPropRender.gml</script>
+    </scripts>
+    <scripts name="Character">
+      <script>scripts\equOverall.gml</script>
+      <script>scripts\equValidate.gml</script>
+      <script>scripts\equStats.gml</script>
+      <script>scripts\equTwohand.gml</script>
+      <script>scripts\invAdd.gml</script>
+      <script>scripts\equUpdate.gml</script>
+      <script>scripts\skillGetDef.gml</script>
+      <script>scripts\skillSet.gml</script>
+      <script>scripts\statAdd.gml</script>
+      <script>scripts\statGetDef.gml</script>
+      <script>scripts\statSet.gml</script>
+    </scripts>
     <script>scripts\pCollision.gml</script>
-    <script>scripts\mapGetDef.gml</script>
-    <script>scripts\equValidate.gml</script>
-    <script>scripts\equTwohand.gml</script>
-    <script>scripts\equStats.gml</script>
-    <script>scripts\equOverall.gml</script>
-    <script>scripts\equUpdate.gml</script>
-    <script>scripts\invAdd.gml</script>
-    <script>scripts\skillGetDef.gml</script>
-    <script>scripts\skillSet.gml</script>
-    <script>scripts\statGetDef.gml</script>
-    <script>scripts\statAdd.gml</script>
-    <script>scripts\statSet.gml</script>
-    <script>scripts\json_read.gml</script>
-    <script>scripts\levelLoad.gml</script>
-    <script>scripts\levelExists.gml</script>
-    <script>scripts\levelData.gml</script>
-    <script>scripts\levelRender.gml</script>
-    <script>scripts\levelPropRender.gml</script>
+    <scripts name="legacy MAP">
+      <script>scripts\mapGetValueDef.gml</script>
+      <script>scripts\mapGetEntityValueDef.gml</script>
+      <script>scripts\mapCreate.gml</script>
+      <script>scripts\mapRemoveEntityValue.gml</script>
+      <script>scripts\mapSetEntityValue.gml</script>
+      <script>scripts\mapAddEntity.gml</script>
+      <script>scripts\mapDrawEntity.gml</script>
+      <script>scripts\mapSave.gml</script>
+      <script>scripts\mapCreateSprite.gml</script>
+      <script>scripts\mapCreateObjects.gml</script>
+      <script>scripts\mapLoad.gml</script>
+      <script>scripts\mapCreateCollisionmask.gml</script>
+      <script>scripts\mapSetValue.gml</script>
+      <script>scripts\mapPlaceEntity.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fntMain</font>
@@ -597,6 +608,7 @@
     <object>objects\Level</object>
     <object>objects\LevelProp</object>
   </objects>
+  <timelines name="timelines"/>
   <rooms name="rooms">
     <room>rooms\room0</room>
   </rooms>

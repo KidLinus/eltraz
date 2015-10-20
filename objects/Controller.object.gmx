@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>global.maps = json_read("maps.json")
+global.debug = true
 global.inventory = ds_map_create()
 global.inventory_offhand = true
 global.inventory_legs = true
@@ -36,6 +37,7 @@ equUpdate()
 global.hp = statGetDef('hp', 1)
 global.mp = statGetDef('mp', 0)
 global.map = "waterfront"
+global.mapHover = 0
 levelLoad(global.map)
 levelRender(global.map)
 

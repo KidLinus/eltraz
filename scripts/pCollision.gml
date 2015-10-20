@@ -1,5 +1,10 @@
-var _x = argument0
-var _y = argument1
+_x = argument0
+_y = argument1
 var _obj = argument2
+global._c = false
 
-return collision_rectangle(_x - 8, _y - 60, _x + 8, _y, _obj, true, true)
+with LevelProp {
+    if !global._c && solid && collision_rectangle(Player._x - 8, Player._y - 60, Player._x + 8, Player._y, id, true, false) global._c = true
+}
+
+return global._c

@@ -52,8 +52,7 @@
   </views>
   <instances>
     <instance objName="Controller" x="0" y="0" name="inst_68CC13B9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="Map" x="32" y="0" name="inst_36464A86" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="Gui" x="64" y="0" name="inst_82305AB5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="Gui" x="32" y="0" name="inst_82305AB5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="Player" x="160" y="96" name="inst_AFBFFF67" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
