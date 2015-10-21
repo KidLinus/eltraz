@@ -1,1 +1,0 @@
-global.bgMusic = argument0
