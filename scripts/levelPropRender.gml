@@ -2,7 +2,7 @@ var _data = ds_map_find_value(levelProps(level), name)
 switch(mapGetDef(_data, 'type', 'solid')) {
     case "solid":
     sprite_index   = asset_get_index(mapGetDef(_data, 'sprite_index', 'sprUndefined'))
-    mask_index     = asset_get_index(mapGetDef(_data, 'sprite_index', sprite_index))
+    mask_index     = asset_get_index(mapGetDef(_data, 'mask_index', sprite_index))
     image_index    = mapGetDef(_data, 'image_index', 0)
     image_speed    = mapGetDef(_data, 'image_speed', 1)
     x              = mapGetDef(_data, 'x', 0)
@@ -17,8 +17,8 @@ switch(mapGetDef(_data, 'type', 'solid')) {
     break;
     
     case "portal":
-    sprite_index   = sprUndefined//asset_get_index(mapGetDef(_data, 'sprite_index', 'sprUndefined'))
-    mask_index     = asset_get_index(mapGetDef(_data, 'sprite_index', sprite_index))
+    sprite_index   = asset_get_index(mapGetDef(_data, 'sprite_index', 'sprUndefined'))
+    mask_index     = asset_get_index(mapGetDef(_data, 'mask_index', sprite_index))
     image_index    = mapGetDef(_data, 'image_index', 0)
     image_speed    = mapGetDef(_data, 'image_speed', 1)
     x              = mapGetDef(_data, 'x', 0)

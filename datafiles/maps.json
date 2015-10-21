@@ -48,6 +48,7 @@
     "width": 800,
     "height": 400,
     "background": "bgCave",
+    "music": "bgmCave",
     "props": {
       "portalMid": {
         "type": "portal",

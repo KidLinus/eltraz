@@ -184,8 +184,6 @@ repeat(ceil(display_get_gui_width()/330)) {
 }
 guiDrawChat(0, display_get_gui_height() - 170, display_get_gui_width() - 200, display_get_gui_height())
 
-draw_sprite(sprite3, 0, display_get_gui_width()-100, display_get_gui_height() - 100)
-
 guiDrawWindows()
 
 if window_get_cursor() != global.cur {

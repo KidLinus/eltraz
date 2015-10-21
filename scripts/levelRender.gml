@@ -4,6 +4,7 @@ with Level {
         background_index[0] = asset_get_index(mapGetDef(levelData(name), "background", "bgClouds"))
         background_xscale[0] = view_hview / background_get_height(background_index)
         background_yscale[0] = background_xscale[0]
+        global.bgm = asset_get_index(mapGetDef(levelData(name), "music", "bgmForest"))
         repeat(ds_map_size(_props)) {
             var _obj = instance_create(0, 0, LevelProp);
             _obj.name = _i

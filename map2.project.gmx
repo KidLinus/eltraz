@@ -23,13 +23,13 @@
     </datafile>
   </datafiles>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\bgmCave</sound>
+    <sound>sound\bgmForest</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\sprUndefined</sprite>
-    <sprite>sprites\maskPlayer</sprite>
-    <sprite>sprites\sprite2</sprite>
-    <sprite>sprites\sprite3</sprite>
-    <sprites name="entity">
+    <sprites name="props">
       <sprites name="platforms">
         <sprite>sprites\sprPlatform01</sprite>
       </sprites>
@@ -384,7 +384,6 @@
       <sprite>sprites\sprStatLightning</sprite>
       <sprite>sprites\sprStatMining</sprite>
     </sprites>
-    <sprite>sprites\sprSword01</sprite>
     <sprites name="skills">
       <sprite>sprites\sprite212_sprItem202</sprite>
       <sprite>sprites\sprite213_sprItem203</sprite>
@@ -519,14 +518,12 @@
       <sprite>sprites\sprite350_sprItem340</sprite>
       <sprite>sprites\sprite351_sprItem341</sprite>
     </sprites>
-    <sprite>sprites\sprHat01</sprite>
     <sprites name="gui">
       <sprite>sprites\sprSlot</sprite>
       <sprite>sprites\sprSlotDisabled</sprite>
       <sprite>sprites\sprStatBg</sprite>
     </sprites>
     <sprite>sprites\sprite418</sprite>
-    <sprite>sprites\maskNone</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgClouds</background>
@@ -613,9 +610,7 @@
   <objects name="objects">
     <object>objects\Controller</object>
     <object>objects\Player</object>
-    <object>objects\Map</object>
     <object>objects\Gui</object>
-    <object>objects\MapEnt</object>
     <object>objects\Level</object>
     <object>objects\LevelProp</object>
   </objects>
@@ -625,6 +620,11 @@
   <help>
     <rtf>help.rtf</rtf>
   </help>
+  <audiogroups name="audiogroups">
+    <audiogroup name="audiogroup_default"/>
+    <audiogroup name="agBgm"/>
+    <audiogroup name="agSfx"/>
+  </audiogroups>
   <TutorialState>
     <IsTutorial>0</IsTutorial>
     <TutorialName></TutorialName>

@@ -39,8 +39,14 @@ global.mp = statGetDef('mp', 0)
 global.map = "waterfront"
 global.changeMap = ""
 global.mapHover = 0
+global.volumeBg = 100
+global.volumeSfx = 100
+global.bgm = -1
+global.bgmC = global.bgm
 levelLoad(global.map)
 levelRender(global.map)
+
+step_delta = current_time
 
 var _it = ds_map_create()
 ds_map_add(_it, 'name', 'Simple Sword')
@@ -86,6 +92,37 @@ ds_map_add(_it4, 'def_p', 5)
 ds_map_add(_it4, 'move_speed', -5)
 ds_map_add(_it4, 'stack', 200)
 invAdd(_it4)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>while(current_time - step_delta &gt; 1000/60) {
+    if global.bgm != global.bgmC {
+        audio_stop_sound(global.bgmC)
+        audio_play_sound(global.bgm, 1, true)
+        global.bgmC = global.bgm
+    }
+    
+    step_delta += 1000/60
+}
 </string>
           </argument>
         </arguments>
