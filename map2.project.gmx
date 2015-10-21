@@ -554,14 +554,19 @@
     <scripts name="Extend">
       <script>scripts\json_read.gml</script>
       <script>scripts\draw_text_outline.gml</script>
+      <script>scripts\string_split.gml</script>
       <script>scripts\mapGetDef.gml</script>
     </scripts>
     <scripts name="Level">
       <script>scripts\levelLoad.gml</script>
+      <script>scripts\levelUnload.gml</script>
       <script>scripts\levelExists.gml</script>
       <script>scripts\levelData.gml</script>
+      <script>scripts\levelProps.gml</script>
       <script>scripts\levelRender.gml</script>
+      <script>scripts\levelUnrender.gml</script>
       <script>scripts\levelPropRender.gml</script>
+      <script>scripts\levelPropGetDef.gml</script>
     </scripts>
     <scripts name="Character">
       <script>scripts\equOverall.gml</script>
@@ -577,6 +582,7 @@
       <script>scripts\statSet.gml</script>
     </scripts>
     <script>scripts\pCollision.gml</script>
+    <script>scripts\pCollisionPortal.gml</script>
     <scripts name="legacy MAP">
       <script>scripts\mapGetValueDef.gml</script>
       <script>scripts\mapGetEntityValueDef.gml</script>
@@ -593,6 +599,8 @@
       <script>scripts\mapSetValue.gml</script>
       <script>scripts\mapPlaceEntity.gml</script>
     </scripts>
+    <script>scripts\ds_map_message.gml</script>
+    <script>scripts\portalUse.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fntMain</font>
@@ -608,7 +616,6 @@
     <object>objects\Level</object>
     <object>objects\LevelProp</object>
   </objects>
-  <timelines name="timelines"/>
   <rooms name="rooms">
     <room>rooms\room0</room>
   </rooms>

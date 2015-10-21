@@ -7,6 +7,4 @@ while (!file_text_eof(_jsonFile))
 }
 file_text_close(_jsonFile)
 
-show_message(_jsonData)
-
 return json_decode(_jsonData)

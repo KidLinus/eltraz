@@ -37,6 +37,7 @@ equUpdate()
 global.hp = statGetDef('hp', 1)
 global.mp = statGetDef('mp', 0)
 global.map = "waterfront"
+global.changeMap = ""
 global.mapHover = 0
 levelLoad(global.map)
 levelRender(global.map)
@@ -85,12 +86,6 @@ ds_map_add(_it4, 'def_p', 5)
 ds_map_add(_it4, 'move_speed', -5)
 ds_map_add(_it4, 'stack', 200)
 invAdd(_it4)
-
-var _i = ds_map_find_first(global.maps)
-repeat(ds_map_size(global.maps)) {
-    show_message(_i + ": " + string(ds_map_find_value(global.maps, _i)))
-    _i = ds_map_find_next(global.maps, _i)
-}
 </string>
           </argument>
         </arguments>
@@ -115,6 +110,7 @@ repeat(ds_map_size(global.maps)) {
             <kind>1</kind>
             <string>draw_circle(10,10,10,1)
 draw_line(10,10,10+lengthdir_x(10,0-current_time),10+lengthdir_y(10,0-current_time))
+draw_self()
 </string>
           </argument>
         </arguments>

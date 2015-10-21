@@ -9,18 +9,55 @@
         "sprite_index": "sprPlatform01",
         "x": 2,
         "y": 300
-        },
+      },
       "portalLeft": {
         "type": "portal",
         "x": 750,
         "y": 250,
-        "target": "portalRight"
-        },
+        "target": "waterfront:prop:portalRight"
+      },
       "portalRight": {
         "type": "portal",
         "x": 50,
         "y": 250,
-        "target": "portalLeft"
+        "target": "waterfront:prop:portalLeft"
+      },
+      "platform02": {
+        "type": "solid",
+        "sprite_index": "sprPlatform01",
+        "x": 702,
+        "y": 300
+      },
+      "portalMid": {
+        "type": "portal",
+        "x": 400,
+        "y": 250,
+        "target": "cave:prop:portalMid"
+      },
+      "platform03": {
+        "type": "solid",
+        "sprite_index": "sprPlatform01",
+        "x": 352,
+        "y": 300
+      }
+    }
+  },
+  "cave": {
+    "name": "Dark cave",
+    "width": 800,
+    "height": 400,
+    "props": {
+      "portalMid": {
+        "type": "portal",
+        "x": 400,
+        "y": 250,
+        "target": "waterfront:prop:portalMid"
+      },
+      "platform01": {
+        "type": "solid",
+        "sprite_index": "sprPlatform01",
+        "x": 350,
+        "y": 300
       }
     }
   }

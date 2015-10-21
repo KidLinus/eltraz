@@ -30,12 +30,15 @@ global.guiHover = ""
 global.windHover = ""
 global.guiItemHover = false
 global.guiTextHover = ""
+global.mapHover = -1
 global._guiChat = ds_list_create()
 global._guiWind = ds_map_create()
 global._guiDrag = ""
 global._guiDrop = ""
 global._guiDragX = 0
 global._guiDragY = 0
+step_delta = current_time
+image_alpha = 0
 
 guiChatMessage('GUI System loaded!', 'System', c_green)
 win_mainmenu = ds_map_create()
@@ -92,6 +95,7 @@ ds_map_add(win_character, 'title', 'Character')
           <argument>
             <kind>1</kind>
             <string>//guiChatMessage('GUI test: ' + string(random(100000)), 'Test', c_purple)
+global.mapHover = instance_position(mouse_x, mouse_y, LevelProp)
 </string>
           </argument>
         </arguments>
@@ -273,6 +277,33 @@ if global.debug {
     draw_set_color(c_white)
     draw_text(0,0,"Fps: " + string(fps) + "/" + string(room_speed) + "#Hover: " + global.guiHover + "#Drag: " + global._guiDrag)
 }
+
+while(current_time - step_delta &gt; 1000/60) {
+    if global.changeMap != "" {
+        image_alpha += 0.05
+        if image_alpha &gt;= 1.1 {
+            image_alpha = 1
+            var _arg = string_split(":", global.changeMap)            
+            levelUnload(global.map)
+            global.map = _arg[0]
+            levelLoad(global.map)
+            levelRender(global.map)
+            portalUse(global.changeMap)
+            
+            global.changeMap = ""
+        }
+    }else {
+        image_alpha -= 0.05
+        if image_alpha &lt; 0 image_alpha = 0
+    }
+    
+    step_delta += 1000/60
+}
+
+draw_set_color(c_black)
+draw_set_alpha(image_alpha)
+draw_rectangle(0, 0, display_get_gui_width(), display_get_gui_height() - 200, 0)
+draw_set_alpha(1)
 </string>
           </argument>
         </arguments>
