@@ -528,7 +528,10 @@
     <sprite>sprites\sprite418</sprite>
     <sprite>sprites\maskNone</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bgClouds</background>
+    <background>background\bgCave</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="GUI">
@@ -555,6 +558,7 @@
       <script>scripts\json_read.gml</script>
       <script>scripts\draw_text_outline.gml</script>
       <script>scripts\string_split.gml</script>
+      <script>scripts\ds_map_message.gml</script>
       <script>scripts\mapGetDef.gml</script>
     </scripts>
     <scripts name="Level">
@@ -582,6 +586,7 @@
       <script>scripts\statSet.gml</script>
     </scripts>
     <script>scripts\pCollision.gml</script>
+    <script>scripts\portalUse.gml</script>
     <script>scripts\pCollisionPortal.gml</script>
     <scripts name="legacy MAP">
       <script>scripts\mapGetValueDef.gml</script>
@@ -599,8 +604,6 @@
       <script>scripts\mapSetValue.gml</script>
       <script>scripts\mapPlaceEntity.gml</script>
     </scripts>
-    <script>scripts\ds_map_message.gml</script>
-    <script>scripts\portalUse.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fntMain</font>

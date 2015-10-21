@@ -168,6 +168,7 @@ if keyboard_check_pressed(vk_up) &amp;&amp; pCollisionPortal(x, y + 1, map) {
             <kind>1</kind>
             <string>viewY += ((y - (display_get_gui_height()-200)/2) - viewY)/30
 view_yview = round(viewY)
+background_y[0] = view_yview / mapGetDef(levelData(global.map), 'background_vscroll', 2)
 </string>
           </argument>
         </arguments>
@@ -192,6 +193,7 @@ view_yview = round(viewY)
             <kind>1</kind>
             <string>viewX += ((x - display_get_gui_width()/2) - viewX)/30
 view_xview = round(viewX)
+background_x[0] = view_xview / mapGetDef(levelData(global.map), 'background_hscroll', 2)
 </string>
           </argument>
         </arguments>
