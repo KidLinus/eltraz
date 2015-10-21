@@ -5,10 +5,10 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>self</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="8" enumb="0">
+    <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -25,11 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if global.guiHover = "map_" + string(id) {
-    draw_self_outline(c_yellow)
-}
+            <string>global.maps = json_read("maps.json")
+global.mapView = "cave"
 
-draw_self()
+var map = ds_map_find_first(global.maps)
+repeat(ds_map_size(global.maps)) {
+    levelLoad(map)
+    levelRender(map)
+    map =ds_map_find_next(global.maps, map)
+}
 </string>
           </argument>
         </arguments>

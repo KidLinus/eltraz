@@ -32,6 +32,7 @@
     <sprites name="props">
       <sprites name="platforms">
         <sprite>sprites\sprPlatform01</sprite>
+        <sprite>sprites\sprPlatform02</sprite>
       </sprites>
     </sprites>
     <sprite>sprites\guiBg</sprite>
@@ -524,6 +525,7 @@
       <sprite>sprites\sprStatBg</sprite>
     </sprites>
     <sprite>sprites\sprite418</sprite>
+    <sprite>sprites\sprite434</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgClouds</background>
