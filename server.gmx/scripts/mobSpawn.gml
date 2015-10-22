@@ -7,7 +7,7 @@ var _spawner = argument4
 var _mob = instance_create(_x, _y, LevelMob);
 
 _mob.data = _data
-_mob.map = _map
+_mob.level = _map
 _mob.spawner = _spawner
 
 if _spawner >= 0 {

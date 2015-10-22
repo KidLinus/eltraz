@@ -603,6 +603,21 @@
       <script>scripts\mapSetValue.gml</script>
       <script>scripts\mapPlaceEntity.gml</script>
     </scripts>
+    <scripts name="network">
+      <script>scripts\message_prep.gml</script>
+      <script>scripts\message_send.gml</script>
+      <script>scripts\message_write_bool.gml</script>
+      <script>scripts\message_write_u8.gml</script>
+      <script>scripts\message_write_s8.gml</script>
+      <script>scripts\message_write_u16.gml</script>
+      <script>scripts\message_write_s16.gml</script>
+      <script>scripts\message_write_u32.gml</script>
+      <script>scripts\message_write_s32.gml</script>
+      <script>scripts\message_write_f32.gml</script>
+      <script>scripts\message_write_f64.gml</script>
+      <script>scripts\message_write_string.gml</script>
+    </scripts>
+    <script>scripts\apiMessage.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fntMain</font>
@@ -610,8 +625,8 @@
     <font>fonts\fntSmall</font>
   </fonts>
   <objects name="objects">
-    <object>objects\Controller</object>
     <object>objects\Player</object>
+    <object>objects\Controller</object>
     <object>objects\Gui</object>
     <object>objects\Level</object>
     <object>objects\LevelProp</object>

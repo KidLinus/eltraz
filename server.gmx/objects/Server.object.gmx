@@ -27,12 +27,170 @@
             <kind>1</kind>
             <string>global.maps = json_read("maps.json")
 global.mapView = "cave"
+global.players = ds_map_create()
+
+global.apiPort      = 1337
+global.apiServer    = network_create_server(network_socket_tcp, global.apiPort, 100)
+global.apiBuff      = buffer_create(256, buffer_grow, 1)
+global.apiClient    = ds_map_create()
+
+global.posPort      = 1338
+//global.posServer    = network_create_server(network_socket_udp, global.posPort, 100)
+global.posServer    = network_create_socket_ext(network_socket_udp, global.posPort)
+network_set_config(network_config_enable_reliable_udp, global.posServer)
+global.posBuff      = buffer_create(64, buffer_grow, 1)
+global.posClient    = ds_list_create()
 
 var map = ds_map_find_first(global.maps)
 repeat(ds_map_size(global.maps)) {
     levelLoad(map)
     levelRender(map)
-    map =ds_map_find_next(global.maps, map)
+    map = ds_map_find_next(global.maps, map)
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="68">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var nType = ds_map_find_value(async_load, "type")
+var nId = ds_map_find_value(async_load, "id")
+var nPort = ds_map_find_value(async_load, "port")
+
+switch(nType) {
+    case network_type_connect:
+    var nSocket = ds_map_find_value(async_load, "socket")    
+    if nId == global.apiServer apiConnect(nSocket)
+    //if nId == global.posServer posConnect(nSocket)
+    break; 
+    
+    case network_type_disconnect:
+    var nSocket = ds_map_find_value(async_load, "socket")
+    if nId == global.apiServer apiDisonnect(nSocket)
+    //if nId == global.posServer posDisonnect(nSocket)
+    break;
+    
+    case network_type_data: 
+    var nSocket = nId
+    var nMessage = ds_map_find_value(async_load, "buffer")
+    
+    if nPort == global.apiPort {
+        apiMessage(nSocket, nMessage)
+    }else {
+        posMessage(nSocket, nMessage)
+    }
+    break;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var _i = ds_map_find_first(global.players)
+var _o = 0
+repeat(ds_map_size(global.players)) {
+    draw_text(5, 5 + 16 * _o, "UserId: " + string(_i))
+    draw_text(100, 5 + 16 * _o, "map: " + string(playerGetDef(_i, 'map', 0)))
+    draw_text(150, 5 + 16 * _o, "x: " + string(playerGetDef(_i, 'x', 0)))
+    draw_text(200, 5 + 16 * _o, "y: " + string(playerGetDef(_i, 'y', 0)))
+    _i = ds_map_find_next(global.players, _i)
+    _o += 1
+    
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var _i = ds_map_find_first(global.players)
+var _o = 0
+repeat(ds_map_size(global.players)) {
+
+    if playerGetDef(_i, 'map', '') == global.mapView {
+        draw_sprite_ext(sprPlayer, 0, playerGetDef(_i, 'x', 0) - 16, playerGetDef(_i, 'y', 0) - 64, 3.2, 6.4, 0, c_white, 1)
+        draw_text_outline(playerGetDef(_i, 'x', 0) - 16, playerGetDef(_i, 'y', 0) - 64, playerGetDef(_i, 'name', 'UnnamedPlayer'), c_yellow)
+    }
+    
+    _i = ds_map_find_next(global.players, _i)
+    _o += 1
+    
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if global.mapView == "cave" {
+    global.mapView = "waterfront"
+}else {
+    global.mapView = "cave"
 }
 </string>
           </argument>

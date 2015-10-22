@@ -36,6 +36,7 @@ jump_speed = 100
 
 vs = 0
 
+dir = 0
 anim = 'stand'
 
 skeleton_animation_set(anim)

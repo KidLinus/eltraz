@@ -265,6 +265,11 @@ while(current_time - step_delta &gt; 1000/60) {
             levelRender(global.map)
             portalUse(global.changeMap)
             
+            message_prep(global.apiBuff)
+            message_write_u16(global.apiBuff, 5) // Change map
+            message_write_string(global.apiBuff, global.map)
+            message_send(global.apiBuff)
+            
             global.changeMap = ""
         }
     }else {

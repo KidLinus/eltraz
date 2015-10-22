@@ -30,6 +30,7 @@
     <sprite>sprites\sprPlatform01</sprite>
     <sprite>sprites\sprMobSpawner</sprite>
     <sprite>sprites\sprMob</sprite>
+    <sprite>sprites\sprPlayer</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -54,6 +55,34 @@
     <script>scripts\mapCollision.gml</script>
     <script>scripts\mobSpawn.gml</script>
     <script>scripts\mobInit.gml</script>
+    <scripts name="network">
+      <script>scripts\message_prep.gml</script>
+      <script>scripts\message_write_string.gml</script>
+      <script>scripts\message_write_f64.gml</script>
+      <script>scripts\message_write_u8.gml</script>
+      <script>scripts\message_write_s32.gml</script>
+      <script>scripts\message_write_s16.gml</script>
+      <script>scripts\message_write_f32.gml</script>
+      <script>scripts\message_send.gml</script>
+      <script>scripts\message_write_bool.gml</script>
+      <script>scripts\message_write_u32.gml</script>
+      <script>scripts\message_write_s8.gml</script>
+      <script>scripts\message_write_u16.gml</script>
+    </scripts>
+    <script>scripts\apiMessage.gml</script>
+    <script>scripts\posMessage.gml</script>
+    <script>scripts\apiConnect.gml</script>
+    <script>scripts\apiMap.gml</script>
+    <script>scripts\apiDisonnect.gml</script>
+    <script>scripts\posConnect.gml</script>
+    <script>scripts\posDisonnect.gml</script>
+    <script>scripts\sessionValidate.gml</script>
+    <script>scripts\playerLogin.gml</script>
+    <script>scripts\playerLogout.gml</script>
+    <script>scripts\playerGetDef.gml</script>
+    <script>scripts\playerSet.gml</script>
+    <script>scripts\playerLoad.gml</script>
+    <script>scripts\apiUser.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\Server</object>
