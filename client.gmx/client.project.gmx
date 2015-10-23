@@ -625,6 +625,8 @@
     <script>scripts\userY.gml</script>
     <script>scripts\userSet.gml</script>
     <script>scripts\userGetDef.gml</script>
+    <script>scripts\sqlRequest.gml</script>
+    <script>scripts\urlEncode.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fntMain</font>
@@ -637,9 +639,11 @@
     <object>objects\Gui</object>
     <object>objects\Level</object>
     <object>objects\LevelProp</object>
+    <object>objects\Login</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room0</room>
+    <room>rooms\rm_login</room>
+    <room>rooms\rm_game</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

@@ -134,15 +134,14 @@ if _data {
             var _userSock = real(ds_map_find_value(_data, "var"));
             
             if !ds_map_exists(global.players, _userId) {
-                var _userMap = ds_map_create()
-                ds_map_add(_userData, 'id', _userId)
+                ds_map_replace(_userData, 'id', _userId)
                 ds_map_replace(_userData, 'socket', _userSock)
                 ds_map_add_map(global.players, _userId, _userData)
                 apiMap(_userSock, _userId)
                 
                 message_prep(global.apiBuff)
                 message_write_u16(global.apiBuff, 1)//Player login success
-                message_write_string(global.apiBuff, json_encode(_userData))
+                //message_write_string(global.apiBuff, json_encode(_userData))
                 message_send(global.apiBuff, _userSock)
             }else {
                 message_prep(global.apiBuff)

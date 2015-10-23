@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -48,11 +48,11 @@ step_delta = current_time
 movement_interval = 1
 movement_buff = ds_list_create()
 
+global.sqlUrl = 'http://eltraz.dev'
+
 global.apiIp = 'localhost'
 global.apiPort = 1337
-global.apiServer = network_create_socket(network_socket_tcp)
-global.apiBuff = buffer_create(256, buffer_grow, 1)
-network_connect(global.apiServer, global.apiIp, global.apiPort)
+//network_connect(global.apiServer, global.apiIp, global.apiPort)
 
 global.posIp = 'localhost'
 global.posPort = 1338
@@ -60,11 +60,25 @@ global.posServer = network_create_socket_ext(network_socket_udp, global.posPort)
 global.posBuff = buffer_create(64, buffer_grow, 1)
 network_set_config(network_config_enable_reliable_udp, global.posServer)
 
-message_prep(global.apiBuff)
+/*message_prep(global.apiBuff)
 message_write_u16(global.apiBuff, 1) // login
 message_write_string(global.apiBuff, "snabel") // session
 message_write_string(global.apiBuff, "test") // session
-message_send(global.apiBuff)
+message_send(global.apiBuff)*/global.apiServer = network_create_socket(network_socket_tcp)
+global.apiBuff = buffer_create(256, buffer_grow, 1)
+//network_connect(global.apiServer, global.apiIp, global.apiPort)
+
+global.posIp = 'localhost'
+global.posPort = 1338
+global.posServer = network_create_socket_ext(network_socket_udp, global.posPort)
+global.posBuff = buffer_create(64, buffer_grow, 1)
+network_set_config(network_config_enable_reliable_udp, global.posServer)
+
+/*message_prep(global.apiBuff)
+message_write_u16(global.apiBuff, 1) // login
+message_write_string(global.apiBuff, "snabel") // session
+message_write_string(global.apiBuff, "test") // session
+message_send(global.apiBuff)*/
 
 
 //DEBUG DATA
@@ -141,20 +155,22 @@ invAdd(_it4)
         global.bgmC = global.bgm
     }
     
-    ds_list_add(movement_buff, userX(), userY(), Player.dir, Player.anim)
-    if ds_list_size(movement_buff) &gt;= movement_interval * 4 {
-        message_prep(global.posBuff)
-        message_write_u16(global.posBuff, userId()) // userId
-        _i = 0
-        repeat(movement_interval) {
-            message_write_u16(global.posBuff, ds_list_find_value(movement_buff, _i))
-            message_write_u16(global.posBuff, ds_list_find_value(movement_buff, _i + 1))
-            message_write_s8(global.posBuff, ds_list_find_value(movement_buff, _i + 2))
-            message_write_string(global.posBuff, ds_list_find_value(movement_buff, _i + 3))
-            _i += 4
+    if room == rm_game {
+        ds_list_add(movement_buff, userX(), userY(), Player.dir, Player.anim)
+        if ds_list_size(movement_buff) &gt;= movement_interval * 4 {
+            message_prep(global.posBuff)
+            message_write_u16(global.posBuff, userId()) // userId
+            _i = 0
+            repeat(movement_interval) {
+                message_write_u16(global.posBuff, ds_list_find_value(movement_buff, _i))
+                message_write_u16(global.posBuff, ds_list_find_value(movement_buff, _i + 1))
+                message_write_s8(global.posBuff, ds_list_find_value(movement_buff, _i + 2))
+                message_write_string(global.posBuff, ds_list_find_value(movement_buff, _i + 3))
+                _i += 4
+            }
+            ds_list_clear(movement_buff)
+            network_send_udp(global.posBuff, global.posIp, global.posPort, global.posBuff, buffer_tell(global.posBuff))
         }
-        ds_list_clear(movement_buff)
-        network_send_udp(global.posBuff, global.posIp, global.posPort, global.posBuff, buffer_tell(global.posBuff))
     }
     
     step_delta += 1000/60
@@ -201,6 +217,40 @@ switch(nType) {
         //posMessage(nMessage)
     }
     break;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if room == rm_game {
+    network_connect(global.apiServer, global.apiIp, global.apiPort)
+    
+    message_prep(global.apiBuff)
+    message_write_u16(global.apiBuff, 1) // login
+    message_write_string(global.apiBuff, global.username)
+    message_write_string(global.apiBuff, global.password)
+    message_send(global.apiBuff)
+    
+    levelLoad(userMap())
+    levelRender(userMap())
 }
 </string>
           </argument>
