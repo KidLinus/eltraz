@@ -61,11 +61,20 @@ if (isset($_REQUEST["command"])) {
 		}
 		mysqli_stmt_close($stmt);
 		break;
+
+		case 'save':
+		$query = "UPDATE `user` SET `data` = ? WHERE `id` = ?;";
+		$stmt = mysqli_prepare($mysqli, $query);
+		mysqli_stmt_bind_param($stmt, 'si', $_REQUEST["data"], $_REQUEST["user"]);
+		mysqli_stmt_execute($stmt);
+		echo json_encode(array("success" => true, "command" => $command, "id" => $_REQUEST["user"], "var" => $var));
+		mysqli_stmt_close($stmt);
+		break;
 	}
 
 	/*
 	//echo $_REQUEST["data"];
-	if (isset($_REQUEST["save"])) {
+	if (isset($_REQUEST["save"]))
 		//Put 
 		$query = "DELETE FROM `json` WHERE `key` = ?;";
 

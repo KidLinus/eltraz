@@ -27,26 +27,22 @@
             <kind>1</kind>
             <string>global.maps = json_read("maps.json")
 global.debug = true
+
+global.player = ds_map_create()
 global.inventory = ds_map_create()
+
 global.inventory_offhand = true
 global.inventory_legs = true
-global.money = 0
 global.skills = ds_map_create()
 global.stats = ds_map_create()
 equUpdate()
-global.hp = statGetDef('hp', 1)
-global.mp = statGetDef('mp', 0)
-global.map = ""
+
 global.changeMap = ""
 global.mapHover = 0
 global.volumeBg = 100
 global.volumeSfx = 100
 global.bgm = -1
 global.bgmC = global.bgm
-global.userId = 0
-global.username = ""
-/*levelLoad(global.map)
-levelRender(global.map)*/
 
 step_delta = current_time
 movement_interval = 1
@@ -145,10 +141,10 @@ invAdd(_it4)
         global.bgmC = global.bgm
     }
     
-    ds_list_add(movement_buff, Player.x, Player.y, Player.dir, Player.anim)
+    ds_list_add(movement_buff, userX(), userY(), Player.dir, Player.anim)
     if ds_list_size(movement_buff) &gt;= movement_interval * 4 {
         message_prep(global.posBuff)
-        message_write_u16(global.posBuff, global.userId) // userId
+        message_write_u16(global.posBuff, userId()) // userId
         _i = 0
         repeat(movement_interval) {
             message_write_u16(global.posBuff, ds_list_find_value(movement_buff, _i))

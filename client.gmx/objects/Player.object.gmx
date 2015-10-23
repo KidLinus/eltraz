@@ -70,6 +70,8 @@ viewY = y - display_get_gui_height()/2
           <argument>
             <kind>1</kind>
             <string>while(current_time - move_delta &gt; 1000/(move_speed*1.4)) {
+    x = userX()
+    y = userY()
     dir = 0
     anim = 'stand'
     if keyboard_check(vk_left) dir -= 1
@@ -102,10 +104,14 @@ viewY = y - display_get_gui_height()/2
     if !pCollision(x, y + 1, map) anim = 'jump'
     if skeleton_animation_get() != anim skeleton_animation_set(anim)
     event_user(0)
+    userSet('x', x)
+    userSet('y', y)
     move_delta += 1000/(move_speed*1.4)
 }
     
 while(current_time - grav_delta &gt; 1000/grav_speed) {
+    x = userX()
+    y = userY()
     if vs &lt; 8 vs += 0.2
     vdir = 1
     slide = 2
@@ -133,6 +139,8 @@ while(current_time - grav_delta &gt; 1000/grav_speed) {
     //if y &gt; mapGetValueDef(Map.map, 'height', 1) + 200 y = 0
     
     event_user(1)
+    userSet('x', x)
+    userSet('y', y)
     grav_delta += 1000/grav_speed
 }
 
@@ -142,8 +150,8 @@ while(current_time - step_delta &gt; 1000/60) {
     step_delta += 1000/60
 }
 
-if keyboard_check_pressed(vk_up) &amp;&amp; pCollisionPortal(x, y + 1, map) {
-    portalUse(levelPropGetDef(pCollisionPortal(x, y + 1, map), "target", ""))
+if keyboard_check_pressed(vk_up) &amp;&amp; pCollisionPortal(userX(), userY() + 1, map) {
+    portalUse(levelPropGetDef(pCollisionPortal(userX(), userY() + 1, map), "target", ""))
 }
 </string>
           </argument>
@@ -169,7 +177,7 @@ if keyboard_check_pressed(vk_up) &amp;&amp; pCollisionPortal(x, y + 1, map) {
             <kind>1</kind>
             <string>viewY += ((y - (display_get_gui_height()-200)/2) - viewY)/30
 view_yview = round(viewY)
-background_y[0] = view_yview / mapGetDef(levelData(global.map), 'background_vscroll', 2)
+background_y[0] = view_yview / mapGetDef(levelData(userMap()), 'background_vscroll', 2)
 </string>
           </argument>
         </arguments>
@@ -194,7 +202,7 @@ background_y[0] = view_yview / mapGetDef(levelData(global.map), 'background_vscr
             <kind>1</kind>
             <string>viewX += ((x - display_get_gui_width()/2) - viewX)/30
 view_xview = round(viewX)
-background_x[0] = view_xview / mapGetDef(levelData(global.map), 'background_hscroll', 2)
+background_x[0] = view_xview / mapGetDef(levelData(userMap()), 'background_hscroll', 2)
 </string>
           </argument>
         </arguments>
@@ -217,7 +225,10 @@ background_x[0] = view_xview / mapGetDef(levelData(global.map), 'background_hscr
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>d3d_set_fog(true, c_black, 0, 0)
+            <string>x = userX()
+y = userY()
+
+d3d_set_fog(true, c_black, 0, 0)
 x+=1
 draw_self()
 x-=2

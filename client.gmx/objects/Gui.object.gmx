@@ -258,16 +258,19 @@ while(current_time - step_delta &gt; 1000/60) {
         image_alpha += 0.05
         if image_alpha &gt;= 1.1 {
             image_alpha = 1
-            var _arg = string_split(":", global.changeMap)            
-            levelUnload(global.map)
-            global.map = _arg[0]
-            levelLoad(global.map)
-            levelRender(global.map)
+            var _arg = string_split(":", global.changeMap)
+            if userMap() != _arg[0] {
+                levelUnload(userMap())
+                userSet("map", _arg[0])
+                levelLoad(userMap())
+                levelRender(userMap())
+            }
+            
             portalUse(global.changeMap)
             
             message_prep(global.apiBuff)
             message_write_u16(global.apiBuff, 5) // Change map
-            message_write_string(global.apiBuff, global.map)
+            message_write_string(global.apiBuff, userMap())
             message_send(global.apiBuff)
             
             global.changeMap = ""

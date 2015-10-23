@@ -1,0 +1,166 @@
+
+sprPlayerSpine.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+part_body
+  rotate: true
+  xy: 2, 28
+  size: 57, 88
+  orig: 57, 88
+  offset: 0, 0
+  index: -1
+part_ear
+  rotate: true
+  xy: 404, 100
+  size: 9, 14
+  orig: 9, 14
+  offset: 0, 0
+  index: -1
+part_eyes
+  rotate: true
+  xy: 293, 2
+  size: 22, 17
+  orig: 22, 17
+  offset: 0, 0
+  index: -1
+part_hair
+  rotate: true
+  xy: 92, 14
+  size: 71, 52
+  orig: 71, 52
+  offset: 0, 0
+  index: -1
+part_head
+  rotate: true
+  xy: 146, 62
+  size: 64, 72
+  orig: 64, 72
+  offset: 0, 0
+  index: -1
+part_left_arm
+  rotate: false
+  xy: 472, 95
+  size: 38, 31
+  orig: 38, 31
+  offset: 0, 0
+  index: -1
+part_left_calf
+  rotate: true
+  xy: 2, 4
+  size: 22, 60
+  orig: 22, 60
+  offset: 0, 0
+  index: -1
+part_left_foot
+  rotate: false
+  xy: 146, 12
+  size: 47, 13
+  orig: 47, 13
+  offset: 0, 0
+  index: -1
+part_left_hand
+  rotate: false
+  xy: 264, 17
+  size: 27, 32
+  orig: 27, 32
+  offset: 0, 0
+  index: -1
+part_left_item
+  rotate: true
+  xy: 2, 87
+  size: 39, 142
+  orig: 39, 142
+  offset: 0, 0
+  index: -1
+part_left_leg
+  rotate: true
+  xy: 357, 111
+  size: 15, 61
+  orig: 15, 61
+  offset: 0, 0
+  index: -1
+part_left_sholder
+  rotate: true
+  xy: 214, 19
+  size: 30, 48
+  orig: 30, 48
+  offset: 0, 0
+  index: -1
+part_mouth
+  rotate: true
+  xy: 214, 51
+  size: 9, 4
+  orig: 9, 4
+  offset: 0, 0
+  index: -1
+part_neck
+  rotate: true
+  xy: 64, 7
+  size: 19, 26
+  orig: 19, 26
+  offset: 0, 0
+  index: -1
+part_nose
+  rotate: false
+  xy: 195, 12
+  size: 7, 13
+  orig: 7, 13
+  offset: 0, 0
+  index: -1
+part_right_arm
+  rotate: true
+  xy: 357, 95
+  size: 14, 45
+  orig: 14, 45
+  offset: 0, 0
+  index: -1
+part_right_calf
+  rotate: true
+  xy: 220, 92
+  size: 34, 65
+  orig: 34, 65
+  offset: 0, 0
+  index: -1
+part_right_foot
+  rotate: false
+  xy: 420, 108
+  size: 50, 18
+  orig: 50, 18
+  offset: 0, 0
+  index: -1
+part_right_hand
+  rotate: false
+  xy: 293, 26
+  size: 27, 30
+  orig: 27, 30
+  offset: 0, 0
+  index: -1
+part_right_item
+  rotate: false
+  xy: 146, 27
+  size: 66, 33
+  orig: 66, 33
+  offset: 0, 0
+  index: -1
+part_right_leg
+  rotate: true
+  xy: 287, 101
+  size: 25, 68
+  orig: 25, 68
+  offset: 0, 0
+  index: -1
+part_right_sholder
+  rotate: false
+  xy: 287, 58
+  size: 43, 41
+  orig: 43, 41
+  offset: 0, 0
+  index: -1
+part_waist
+  rotate: false
+  xy: 220, 51
+  size: 55, 39
+  orig: 55, 39
+  offset: 0, 0
+  index: -1

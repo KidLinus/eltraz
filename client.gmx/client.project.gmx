@@ -618,6 +618,13 @@
       <script>scripts\message_write_string.gml</script>
     </scripts>
     <script>scripts\apiMessage.gml</script>
+    <script>scripts\userId.gml</script>
+    <script>scripts\userName.gml</script>
+    <script>scripts\userMap.gml</script>
+    <script>scripts\userX.gml</script>
+    <script>scripts\userY.gml</script>
+    <script>scripts\userSet.gml</script>
+    <script>scripts\userGetDef.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fntMain</font>
