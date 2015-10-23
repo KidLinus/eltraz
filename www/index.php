@@ -12,15 +12,36 @@ if (isset($_REQUEST["key"])) {
 
 	//echo $_REQUEST["data"];
 	if (isset($_REQUEST["data"])) {
-		//Put data
-	}else {
-		$query = "SELECT `data` FROM `json` WHERE `key` = 'test_1'";
+		//Put 
+		$query = "DELETE FROM `json` WHERE `key` = ?;";
 
 		if ($stmt = mysqli_prepare($mysqli, $query)) {
+			mysqli_stmt_bind_param($stmt, 's', $_REQUEST["key"]);
+		    mysqli_stmt_execute($stmt);
+		    mysqli_stmt_close($stmt);
+		}
+
+		$query = "INSERT INTO `json` (`key`, `data`) VALUES (?, ?);";
+
+		if ($stmt = mysqli_prepare($mysqli, $query)) {
+			mysqli_stmt_bind_param($stmt, 'ss', $_REQUEST["key"], $_REQUEST["data"]);
+		    mysqli_stmt_execute($stmt);
+		    mysqli_stmt_close($stmt);
+		}
+
+		echo '{"success":true}';
+	}else {
+		//Get data
+		$query = "SELECT `data` FROM `json` WHERE `key` = ?";
+
+		if ($stmt = mysqli_prepare($mysqli, $query)) {
+			mysqli_stmt_bind_param($stmt, 's', $_REQUEST["key"]);
 		    mysqli_stmt_execute($stmt);
 		    mysqli_stmt_bind_result($stmt, $data);
-		    while (mysqli_stmt_fetch($stmt)) {
-		        echo $data;
+		    if (mysqli_stmt_fetch($stmt)) {
+		        echo '{"success":true, "data":'.$data.'}';
+		    }else {
+		    	echo '{"success":false}';
 		    }
 		    mysqli_stmt_close($stmt);
 		}
