@@ -141,7 +141,6 @@ if _data {
                 
                 message_prep(global.apiBuff)
                 message_write_u16(global.apiBuff, 1)//Player login success
-                //message_write_string(global.apiBuff, json_encode(_userData))
                 message_send(global.apiBuff, _userSock)
             }else {
                 message_prep(global.apiBuff)
