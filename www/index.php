@@ -1,9 +1,5 @@
 <?php
-$data_type = "";
-if (!isset($_REQUEST["type"])) {$_REQUEST["type"] = "";}
-if ($_REQUEST["type"] == "user") {$data_type = "user";}
-
-if ($data_type != "" && isset($_REQUEST["id"])) {
+if (isset($_REQUEST["key"])) {
 	//MYSQL
 	$host='localhost';
 	$user='root';
@@ -14,21 +10,22 @@ if ($data_type != "" && isset($_REQUEST["id"])) {
 	if ($mysqli->connect_errno) { die("Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error); }
 	$mysqli->set_charset("utf8");
 
-	echo $_POST["data"];
-
-	/*if (isset($_REQUEST["data"])) {
-		//
+	//echo $_REQUEST["data"];
+	if (isset($_REQUEST["data"])) {
+		//Put data
 	}else {
-		$req = $mysqli->prepare("SELECT `data` FROM `user` WHERE `id` = ?");
-		$req->bind_param("i", (int)$_REQUEST["id"]);
-		$data = $req->execute();
-		if (!$data) {
-			echo '{"success":false}';
-		}else {
-			echo '{"success":true, "data":' . $data["data"] . '}';
+		$query = "SELECT `data` FROM `json` WHERE `key` = 'test_1'";
+
+		if ($stmt = mysqli_prepare($mysqli, $query)) {
+		    mysqli_stmt_execute($stmt);
+		    mysqli_stmt_bind_result($stmt, $data);
+		    while (mysqli_stmt_fetch($stmt)) {
+		        echo $data;
+		    }
+		    mysqli_stmt_close($stmt);
 		}
-	}*/
-}else {
-	echo '{"success":false}';
+
+	}
+	mysqli_close($mysqli);
 }
 ?>
