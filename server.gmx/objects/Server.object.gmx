@@ -41,6 +41,8 @@ network_set_config(network_config_enable_reliable_udp, global.posServer)
 global.posBuff      = buffer_create(64, buffer_grow, 1)
 global.posClient    = ds_list_create()
 
+global.sqlUrl = 'http://eltraz.dev'
+
 var map = ds_map_find_first(global.maps)
 repeat(ds_map_size(global.maps)) {
     levelLoad(map)
@@ -120,7 +122,72 @@ switch(nType) {
           <argument>
             <kind>1</kind>
             <string>var httpResult = ds_map_find_value(async_load, "result")
-show_message(httpResult)
+
+var _data = json_decode(httpResult)
+
+if _data {
+    if ds_map_find_value(_data, "success") {
+        switch(ds_map_find_value(_data, "command")) {
+            case 'login':
+            var _userId = ds_map_find_value(_data, "id");
+            var _userData = ds_map_find_value(_data, "data");
+            var _userSock = real(ds_map_find_value(_data, "var"));
+            
+            if !ds_map_exists(global.players, _userId) {
+                var _userMap = ds_map_create()
+                ds_map_add(_userData, 'id', _userId)
+                ds_map_replace(_userData, 'socket', _userSock)
+                ds_map_add_map(global.players, _userId, _userData)
+                apiMap(_userSock, _userId)
+                
+                message_prep(global.apiBuff)
+                message_write_u16(global.apiBuff, 1)//Player login success
+                message_write_string(global.apiBuff, json_encode(_userData))
+                message_send(global.apiBuff, _userSock)
+            }else {
+                message_prep(global.apiBuff)
+                message_write_u16(global.apiBuff, 2)//Player login fail
+                message_write_string(global.apiBuff, "already_online")
+                message_send(global.apiBuff, _userSock)
+            }
+            break;
+        }
+    }
+}
+
+/*
+if _userId &amp;&amp; !ds_map_exists(global.players, _userId) {
+
+}else {
+    message_prep(global.apiBuff)
+    message_write_u16(global.apiBuff, 2)//Player login fail
+    message_write_string(global.apiBuff, "already_online")
+    message_send(global.apiBuff, _sock)
+}
+
+*/
+
+
+/*
+
+    var _usr = playerLoad(_userId)
+    ds_map_replace(_usr, 'socket', _sock)
+    ds_map_add_map(global.players, _userId, _usr)
+    apiMap(_sock, _userId)
+    
+    
+if _uId {
+        message_prep(global.apiBuff)
+        message_write_u16(global.apiBuff, 1)//Player login success
+        message_write_u16(global.apiBuff, _uId)
+        message_write_string(global.apiBuff, playerGetDef(_uId, 'map', 'waterfront'))
+        message_write_string(global.apiBuff, playerGetDef(_uId, 'name', ''))
+        message_send(global.apiBuff, _socket)
+    }else {
+        message_prep(global.apiBuff)
+        message_write_u16(global.apiBuff, 2)//Player login fail
+        message_send(global.apiBuff, _socket)
+    }
 </string>
           </argument>
         </arguments>
@@ -216,34 +283,6 @@ repeat(ds_map_size(global.players)) {
 }else {
     global.mapView = "cave"
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="13">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>var json = ds_map_create()
-ds_map_add(json, "kka", "ahasash")
-ds_map_add(json, "ktwaÄåÖöÖöäå_.", "ahasa''/\%21sh")
-ds_map_add(json, "kkaas", 0)
-
-jsonSave("user", 2, json)
 </string>
           </argument>
         </arguments>

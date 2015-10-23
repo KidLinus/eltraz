@@ -7,21 +7,9 @@ switch(_type) {
     break;
     
     case 1://Login
-    var _session = buffer_read(_message, buffer_string)
-    var _uId = playerLogin(sessionValidate(_session), _socket) 
-    
-    if _uId {
-        message_prep(global.apiBuff)
-        message_write_u16(global.apiBuff, 1)//Player login success
-        message_write_u16(global.apiBuff, _uId)
-        message_write_string(global.apiBuff, playerGetDef(_uId, 'map', 'waterfront'))
-        message_write_string(global.apiBuff, playerGetDef(_uId, 'name', ''))
-        message_send(global.apiBuff, _socket)
-    }else {
-        message_prep(global.apiBuff)
-        message_write_u16(global.apiBuff, 2)//Player login fail
-        message_send(global.apiBuff, _socket)
-    }
+    var _username = buffer_read(_message, buffer_string)
+    var _password = buffer_read(_message, buffer_string)
+    playerLogin(_socket, _username, _password) 
     break;
     
     case 5://Change map

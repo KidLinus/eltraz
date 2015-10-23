@@ -81,9 +81,9 @@
     <script>scripts\playerLogout.gml</script>
     <script>scripts\playerGetDef.gml</script>
     <script>scripts\playerSet.gml</script>
-    <script>scripts\playerLoad.gml</script>
     <script>scripts\apiUser.gml</script>
-    <script>scripts\jsonSave.gml</script>
+    <script>scripts\sqlRequest.gml</script>
+    <script>scripts\jsonLoad.gml</script>
     <script>scripts\urlEncode.gml</script>
   </scripts>
   <objects name="objects">

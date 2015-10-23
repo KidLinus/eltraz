@@ -66,7 +66,8 @@ network_set_config(network_config_enable_reliable_udp, global.posServer)
 
 message_prep(global.apiBuff)
 message_write_u16(global.apiBuff, 1) // login
-message_write_string(global.apiBuff, "asghhess3t3s") // session
+message_write_string(global.apiBuff, "snabel") // session
+message_write_string(global.apiBuff, "test") // session
 message_send(global.apiBuff)
 
 
