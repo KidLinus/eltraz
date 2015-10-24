@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var httpResult = ds_map_find_value(async_load, "result")
-
+            <string>/*var httpResult = ds_map_find_value(async_load, "result")
+show_debug_message(httpResult)
 var _data = json_decode(httpResult)
 
 if _data {
@@ -34,6 +34,7 @@ if _data {
         switch(ds_map_find_value(_data, "command")) {
             case 'login':
             global.player = ds_map_find_value(_data, "data");
+            userSet('id', ds_map_find_value(_data, "id"))
             room_goto(rm_game)
             break;
         }

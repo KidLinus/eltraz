@@ -25,7 +25,18 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.maps = json_read("maps.json")
+            <string>global.sqlUrl = 'http://eltraz.dev'
+
+global.maps = ds_map_create()
+
+/*global.maps = json_read("maps.json")
+var map = ds_map_find_first(global.maps)
+repeat(ds_map_size(global.maps)) {
+    levelLoad(map)
+    levelRender(map)
+    map = ds_map_find_next(global.maps, map)
+}*/
+sqlRequest('get_map_db', '')
 global.mapView = "cave"
 global.players = ds_map_create()
 
@@ -41,14 +52,7 @@ network_set_config(network_config_enable_reliable_udp, global.posServer)
 global.posBuff      = buffer_create(64, buffer_grow, 1)
 global.posClient    = ds_list_create()
 
-global.sqlUrl = 'http://eltraz.dev'
 
-var map = ds_map_find_first(global.maps)
-repeat(ds_map_size(global.maps)) {
-    levelLoad(map)
-    levelRender(map)
-    map = ds_map_find_next(global.maps, map)
-}
 </string>
           </argument>
         </arguments>
@@ -122,7 +126,7 @@ switch(nType) {
           <argument>
             <kind>1</kind>
             <string>var httpResult = ds_map_find_value(async_load, "result")
-
+show_debug_message(httpResult)
 var _data = json_decode(httpResult)
 
 if _data {
@@ -147,6 +151,17 @@ if _data {
                 message_write_u16(global.apiBuff, 2)//Player login fail
                 message_write_string(global.apiBuff, "already_online")
                 message_send(global.apiBuff, _userSock)
+            }
+            break;
+            
+            case 'get_map_db':
+            ds_map_destroy(global.maps)
+            global.maps = ds_map_find_value(_data, "data")
+            var map = ds_map_find_first(global.maps)
+            repeat(ds_map_size(global.maps)) {
+                levelLoad(map)
+                levelRender(map)
+                map = ds_map_find_next(global.maps, map)
             }
             break;
         }

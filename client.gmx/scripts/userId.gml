@@ -1,1 +1,1 @@
-return mapGetDef(global.player, "id", 0)
+return real(mapGetDef(global.player, "id", 0))

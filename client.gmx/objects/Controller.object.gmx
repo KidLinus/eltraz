@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.maps = json_read("maps.json")
+            <string>global.sqlUrl = 'http://eltraz.dev'
+global.maps = ds_map_create()
+sqlRequest('get_map_db', '')
+//global.maps = json_read("maps.json")
 global.debug = true
 
 global.player = ds_map_create()
@@ -47,8 +50,6 @@ global.bgmC = global.bgm
 step_delta = current_time
 movement_interval = 1
 movement_buff = ds_list_create()
-
-global.sqlUrl = 'http://eltraz.dev'
 
 global.apiIp = 'localhost'
 global.apiPort = 1337
@@ -217,6 +218,54 @@ switch(nType) {
         //posMessage(nMessage)
     }
     break;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="62">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var httpResult = ds_map_find_value(async_load, "result")
+show_debug_message(httpResult)
+var _data = json_decode(httpResult)
+
+if _data {
+    if ds_map_find_value(_data, "success") {
+        switch(ds_map_find_value(_data, "command")) {
+            case 'get_map_db':
+            ds_map_destroy(global.maps)
+            global.maps = ds_map_find_value(_data, "data")
+            break;
+            
+            case 'login':
+            global.player = ds_map_find_value(_data, "data");
+            userSet('id', ds_map_find_value(_data, "id"))
+            room_goto(rm_game)
+            break;
+        }
+    }else {
+        switch(ds_map_find_value(_data, "command")) {
+            case 'login':
+            show_message("Login fail: " + ds_map_find_value(_data, "reason"))
+            break;
+        }
+    }
 }
 </string>
           </argument>
