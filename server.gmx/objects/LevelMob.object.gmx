@@ -3,7 +3,7 @@
   <spriteName>sprMob</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>5</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -119,7 +119,10 @@ dir = 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if global.mapView == level draw_self()
+            <string>if global.mapView == level {
+    draw_self()
+    draw_text(x, y - 10, mapGetDef(data, 'name', 'Unnamed mob'))
+}
 </string>
           </argument>
         </arguments>

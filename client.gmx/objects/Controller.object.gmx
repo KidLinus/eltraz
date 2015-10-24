@@ -26,8 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>global.sqlUrl = 'http://eltraz.dev'
+global.srvUrl = 'eltraz.dev'
 global.maps = ds_map_create()
+global.mobs = ds_map_create()
 sqlRequest('get_map_db', '')
+sqlRequest('get_mob_db', '')
 //global.maps = json_read("maps.json")
 global.debug = true
 
@@ -51,11 +54,13 @@ step_delta = current_time
 movement_interval = 1
 movement_buff = ds_list_create()
 
-global.apiIp = 'localhost'
+global.apiServer = network_create_socket(network_socket_tcp)
+global.apiBuff = buffer_create(256, buffer_grow, 1)
+global.apiIp = global.srvUrl
 global.apiPort = 1337
 //network_connect(global.apiServer, global.apiIp, global.apiPort)
 
-global.posIp = 'localhost'
+global.posIp = global.srvUrl
 global.posPort = 1338
 global.posServer = network_create_socket_ext(network_socket_udp, global.posPort)
 global.posBuff = buffer_create(64, buffer_grow, 1)
@@ -65,15 +70,8 @@ network_set_config(network_config_enable_reliable_udp, global.posServer)
 message_write_u16(global.apiBuff, 1) // login
 message_write_string(global.apiBuff, "snabel") // session
 message_write_string(global.apiBuff, "test") // session
-message_send(global.apiBuff)*/global.apiServer = network_create_socket(network_socket_tcp)
-global.apiBuff = buffer_create(256, buffer_grow, 1)
+message_send(global.apiBuff)*/
 //network_connect(global.apiServer, global.apiIp, global.apiPort)
-
-global.posIp = 'localhost'
-global.posPort = 1338
-global.posServer = network_create_socket_ext(network_socket_udp, global.posPort)
-global.posBuff = buffer_create(64, buffer_grow, 1)
-network_set_config(network_config_enable_reliable_udp, global.posServer)
 
 /*message_prep(global.apiBuff)
 message_write_u16(global.apiBuff, 1) // login
@@ -207,6 +205,8 @@ switch(nType) {
     break; 
     
     case network_type_disconnect:
+    show_message("Lost connection!")
+    game_end()
     break;
     
     case network_type_data:
@@ -251,6 +251,11 @@ if _data {
             case 'get_map_db':
             ds_map_destroy(global.maps)
             global.maps = ds_map_find_value(_data, "data")
+            break;
+            
+            case 'get_mob_db':
+            ds_map_destroy(global.mobs)
+            global.mobs = ds_map_find_value(_data, "data")
             break;
             
             case 'login':

@@ -1,4 +1,4 @@
-var _data = argument0
+var _data = ds_map_find_value(global.mobs, argument0)
 var _map = argument1
 var _x = argument2
 var _y = argument3

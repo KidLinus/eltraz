@@ -28,7 +28,8 @@
             <string>global.sqlUrl = 'http://eltraz.dev'
 
 global.maps = ds_map_create()
-
+global.mobs = ds_map_create()
+sqlRequest('get_mob_db', '')
 /*global.maps = json_read("maps.json")
 var map = ds_map_find_first(global.maps)
 repeat(ds_map_size(global.maps)) {
@@ -36,7 +37,6 @@ repeat(ds_map_size(global.maps)) {
     levelRender(map)
     map = ds_map_find_next(global.maps, map)
 }*/
-sqlRequest('get_map_db', '')
 global.mapView = "cave"
 global.players = ds_map_create()
 
@@ -164,6 +164,12 @@ if _data {
                 map = ds_map_find_next(global.maps, map)
             }
             break;
+            
+            case 'get_mob_db':
+            ds_map_destroy(global.mobs)
+            global.mobs = ds_map_find_value(_data, "data")
+            sqlRequest('get_map_db', '')
+            break;
         }
     }
 }
@@ -201,6 +207,30 @@ if _uId {
         message_write_u16(global.apiBuff, 2)//Player login fail
         message_send(global.apiBuff, _socket)
     }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>network_destroy(global.apiServer)
+network_destroy(global.posServer)
 </string>
           </argument>
         </arguments>

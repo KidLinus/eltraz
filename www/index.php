@@ -84,6 +84,19 @@ if (isset($_REQUEST["command"])) {
 		mysqli_stmt_close($stmt);
 		break;
 
+		case 'get_mob_db':
+		$query = "SELECT `name`, `data` FROM `mob`";
+		$mapDb = array();
+		$stmt = mysqli_prepare($mysqli, $query);
+		mysqli_stmt_execute($stmt);
+		mysqli_stmt_bind_result($stmt, $mapId, $mapData);
+		while (mysqli_stmt_fetch($stmt)) {
+			$mapDb[$mapId] = json_decode($mapData);
+		}
+		echo json_encode(array("success" => true, "command" => $command, "data" => $mapDb, "var" => $var));
+		mysqli_stmt_close($stmt);
+		break;
+
 	}
 
 	/*
