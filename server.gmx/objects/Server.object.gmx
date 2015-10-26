@@ -229,7 +229,9 @@ if _uId {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>network_destroy(global.apiServer)
+            <string>
+
+network_destroy(global.apiServer)
 network_destroy(global.posServer)
 </string>
           </argument>

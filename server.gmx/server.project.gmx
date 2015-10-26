@@ -46,6 +46,7 @@
       <script>scripts\message_write_s16.gml</script>
       <script>scripts\message_write_f32.gml</script>
       <script>scripts\message_send.gml</script>
+      <script>scripts\message_send_new.gml</script>
       <script>scripts\message_write_bool.gml</script>
       <script>scripts\message_write_u32.gml</script>
       <script>scripts\message_write_s8.gml</script>
