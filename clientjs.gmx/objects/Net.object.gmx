@@ -122,9 +122,7 @@ if _con &lt; 0 {
           <argument>
             <kind>1</kind>
             <string>buffer_seek(global.serverBuffer, buffer_seek_start, 0);
-buffer_write(global.serverBuffer, buffer_u16, 1)//Login
-buffer_write(global.serverBuffer, buffer_string, "Snabelost!!")
-buffer_write(global.serverBuffer, buffer_string, "!!saasfasf WHY!?")
+buffer_write(global.serverBuffer, buffer_text, get_string('Command:', '{"getUserById":[4]}'))
 network_send_raw(global.serverSocket, global.serverBuffer, buffer_tell(global.serverBuffer))
 
 keyboard_string = ""
