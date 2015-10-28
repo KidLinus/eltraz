@@ -1,0 +1,1 @@
+curl -d @request.json ype: application/json" http://localhost:8080

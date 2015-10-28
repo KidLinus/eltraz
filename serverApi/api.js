@@ -1,7 +1,7 @@
 module.exports = function(pool, tools) {
 
   var api = {
-    getUserById : function(client, arg, callback) {
+    getUserById : function(arg, callback) {
       var userId = arg[0];
 
       pool.getConnection(function(err, connection) {
