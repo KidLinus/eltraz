@@ -14,6 +14,31 @@ var pool    = mysql.createPool({
 
 var api     = require('./api')(pool, tools);
 
+function processMessage(json, retData, callback) {
+  function addRet(data, retData, js, callback) {
+    retData.push(data);
+    if (js && retData.length >= Object.keys(js).length) {
+      callback(retData);
+    }
+  }
+
+  if (tools.jsonValid(json)) {
+    js = JSON.parse(json);
+    for (var func in js) {
+      console.log("HTTP >   " + func + " => " + js[func]);
+      if(typeof api[func] === 'function') {
+        api[func](js[func], function(err, ret) {
+          if (err) {console.log("Error:" + err); 
+            addRet({'success':false, 'method':func, 'argument':js[func], 'response':err}, retData, js, callback);
+          }else {
+            addRet({'success':true, 'method':func, 'argument':js[func], 'response':ret}, retData, js, callback);
+          }
+        }, retData);
+      }else {addRet({'success':false, 'method':func, 'argument':js[func], 'response':'No such method'}, retData, js, callback);}
+    }
+  }else {addRet({'success':false, 'response':'Not valid json'}, retData, null, callback);}
+}
+
 net.createServer(function (socket) {
 
   clients.push(socket)
@@ -67,25 +92,11 @@ function httpReq(request, response){
   request.on('end', function () {
     var retData = [];
 
-    if (tools.jsonValid(json)) {
-      js = JSON.parse(json);
+    processMessage(json, retData, function(ret) {
+      response.writeHead(200);
+      response.end(JSON.stringify(ret));
+    });
 
-      for (var func in js) {
-        console.log("HTTP >   " + func + " => " + js[func]);
-        if(typeof api[func] === 'function') {
-          api[func](js[func], function(err, ret) {
-            if (err) {console.log("Error:" + err); 
-              retData.push({'success':false, 'method':func, 'argument':js[func], 'response':err});
-            }else {
-              retData.push({'success':true, 'method':func, 'argument':js[func], 'response':ret});
-            }
-          }, retData);
-        }else {retData.push({'success':false, 'method':func, 'argument':js[func], 'response':'No such method'});}
-      }
-    }else {retData.push({'success':false, 'response':'Not valid json'});}
-
-    response.writeHead(200);
-    response.end(JSON.stringify(retData));
   });
 }
 
